@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 //import PropTypes from 'prop-types';
 import ErrorBoundary from "./errorBoundary";
 import Main from "./containers/main";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
 class Sampleform extends PureComponent {
   static displayName = "Sample Form";
@@ -11,9 +12,11 @@ class Sampleform extends PureComponent {
   render() {
     return (
       <Provider store={store}>
-        <ErrorBoundary>
-          <Main />
-        </ErrorBoundary>
+        <MuiThemeProvider>
+          <ErrorBoundary>
+            <Main />
+          </ErrorBoundary>
+        </MuiThemeProvider>
       </Provider>
     );
   }

@@ -2,7 +2,7 @@ import React from "react";
 import RaisedButton from "material-ui/RaisedButton";
 //import { boundMethod } from "autobind-decorator";
 import TextField from "material-ui/TextField";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+//import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import PropTypes from "prop-types";
 
 const Add = props => {
@@ -15,15 +15,13 @@ const Add = props => {
 
   return (
     <>
-      <MuiThemeProvider>
-        <RaisedButton
-          label="ADD"
-          primary={true}
-          style={{ margin: "12px" }}
-          onClick={() => props.add(props.value + 1)}
-        />
-        <TextField floatingLabelText="Value" value={props.value} />
-      </MuiThemeProvider>
+      <RaisedButton
+        label="ADD"
+        primary={true}
+        style={{ margin: "12px" }}
+        onClick={() => props.add(props.value + 1)}
+      />
+      <TextField floatingLabelText="Value" value={props.value} />
     </>
   );
 };
