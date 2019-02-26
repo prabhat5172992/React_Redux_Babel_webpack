@@ -41,7 +41,7 @@
     "immutability-helper": "^2.9.0",
     "immutable": "^3.7.2",
     "immutable-store": "^0.3.0",
-    "lodash": "4.17.10",
+    "lodash": "^4.17.11",
     "material-design-icons": "^3.0.1",
     "material-ui": "^0.17.4",
     "node-sass": "^4.11.0",
@@ -71,7 +71,6 @@
   "resolutions": {
     "prop-types": "2.5.3",
     "recompose": "0.26.0",
-    "lodash": "4.17.10",
     "core-js": "2.5.3"
   }
 }
