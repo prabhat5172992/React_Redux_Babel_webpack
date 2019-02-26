@@ -4,6 +4,7 @@ import { createStructuredSelector } from "reselect";
 import actions from "../../actions";
 import selectors from "../../selectors";
 import Add from "../../components/Add";
+import Form from "../../components/form";
 
 class Main extends PureComponent {
   render() {
@@ -13,6 +14,7 @@ class Main extends PureComponent {
         <h3> This is main page/ TopGear Project. </h3>
         <h5> {this.props.example} </h5>
         <Add value={this.props.value} add={this.props.add} />
+        <Form />
       </>
     );
   }
