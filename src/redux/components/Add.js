@@ -1,18 +1,9 @@
 import React from "react";
 import RaisedButton from "material-ui/RaisedButton";
-//import { boundMethod } from "autobind-decorator";
 import TextField from "material-ui/TextField";
-//import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import PropTypes from "prop-types";
 
 const Add = props => {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     value: 0
-  //   };
-  // }
-
   return (
     <>
       <RaisedButton

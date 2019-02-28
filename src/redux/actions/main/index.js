@@ -9,3 +9,7 @@ export const onAddClick = value => ({
   type: constants.ON_ADD_CLICK,
   value
 });
+
+export const sagaCheck = value => ({
+  type: constants.SAGA_RUNNING_CHECK
+});

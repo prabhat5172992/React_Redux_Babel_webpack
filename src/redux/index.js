@@ -1,25 +1,25 @@
-import React, { PureComponent } from "react";
-import store from "./storeConfig";
+import React from "react";
+import { render } from "react-dom";
 import { Provider } from "react-redux";
-//import PropTypes from 'prop-types';
+import * as serviceWorker from "../serviceWorker";
 import ErrorBoundary from "./errorBoundary";
 import Main from "./containers/main";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import store from "./storeConfig";
 
-class Sampleform extends PureComponent {
-  static displayName = "Sample Form";
+render(
+  <Provider store={store}>
+    <MuiThemeProvider>
+      <ErrorBoundary>
+        <Main />
+      </ErrorBoundary>
+    </MuiThemeProvider>
+  </Provider>,
+  document.getElementById("root")
+);
 
-  render() {
-    return (
-      <Provider store={store}>
-        <MuiThemeProvider>
-          <ErrorBoundary>
-            <Main />
-          </ErrorBoundary>
-        </MuiThemeProvider>
-      </Provider>
-    );
-  }
-}
-
-export default Sampleform;
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: http://bit.ly/CRA-PWA
+serviceWorker.unregister();
+module.hot.accept();

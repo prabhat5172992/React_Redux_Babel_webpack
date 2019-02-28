@@ -1,39 +1,46 @@
-import {createStore, compose, applyMiddleware} from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import rootReducer from './reducers';
-import rootSaga from './sagas';
+import { createStore, compose, applyMiddleware } from "redux";
+import createSagaMiddleware from "redux-saga";
+import { logger } from "redux-logger";
+import rootReducer from "./reducers";
+import rootSaga from "./sagas";
 
-function configureStoreProd(initialState){
-    const sagaMiddleware = createSagaMiddleware();
-    const middlewares = [
-        sagaMiddleware
-    ];
+/**
+ * @description Redux logger displays every dispatched action and the before/after state of your redux store
+ */
 
-    const store = createStore(rootReducer, initialState, compose(
-        applyMiddleware(...middlewares)
-    ));
+function configureStoreProd(initialState) {
+  const sagaMiddleware = createSagaMiddleware();
+  const middlewares = [sagaMiddleware];
 
-    sagaMiddleware.run(rootSaga);
+  const store = createStore(
+    rootReducer,
+    initialState,
+    compose(applyMiddleware(...middlewares, logger))
+  );
 
-    return store;
+  sagaMiddleware.run(rootSaga);
+
+  return store;
 }
 
-function configureStoreDev(initialState){
-    const sagaMiddleware = createSagaMiddleware();
+function configureStoreDev(initialState) {
+  const sagaMiddleware = createSagaMiddleware();
 
-    const middlewares = [
-        sagaMiddleware
-    ];
+  const middlewares = [sagaMiddleware];
 
-    const composeEnhancers = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose;
-    const store = createStore(rootReducer, initialState, composeEnhancers(
-        applyMiddleware(...middlewares)
-    ));
-    sagaMiddleware.run(rootSaga);
-    return store;
+  const composeEnhancers = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose;
+  const store = createStore(
+    rootReducer,
+    initialState,
+    composeEnhancers(applyMiddleware(...middlewares, logger))
+  );
+  sagaMiddleware.run(rootSaga);
+  return store;
 }
 
-const configureStore = process.env.NODE_ENV === 'production' ? configureStoreProd : configureStoreDev;
+const configureStore =
+  process.env.NODE_ENV === "production"
+    ? configureStoreProd
+    : configureStoreDev;
 
 export default configureStore();
-

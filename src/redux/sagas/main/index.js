@@ -1,19 +1,13 @@
-import actions from "../../actions";
 import constants from "../../constants";
-import selectors from "../../selectors";
-import { call, put, select, takeLatest, fork, take } from "redux-saga/effects";
-//import utils from "../../utils";
+import { takeLatest } from "redux-saga/effects";
 
-
-function* example(){
-    //function Body goes here
+function* example() {
+  yield console.log("HI Prabhat!");
+  //function Body goes here
 }
 
-const onExampleCheck = fork(function* () {
-    //yield takeLatest(constants.REACT_REDUX_SAGA_BOILERPLATE, example);
-});
+function* onExampleCheck() {
+  yield takeLatest(constants.SAGA_RUNNING_CHECK, example);
+}
 
-
-export default [
-    onExampleCheck
-]
+export default [onExampleCheck];

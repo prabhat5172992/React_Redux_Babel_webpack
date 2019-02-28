@@ -3,18 +3,23 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import actions from "../../actions";
 import selectors from "../../selectors";
-import Add from "../../components/Add";
-import Form from "../../components/form";
+import Login from "../../components/login";
+import PageForm from "../../components/form";
 
 class Main extends PureComponent {
+  componentDidMount() {
+    this.props.sagaCheck();
+  }
   render() {
+    console.log("isValidLoginisValidLogin", this.props.isValidLogin);
     return (
       /* Fragements <> </> introduced in react 16, Many tools doesn't support it so <React.Fragment> can be used to make it supportable. <React.Fragment> </React.Fragment>also support keys. */
       <>
-        <h3> This is main page/ TopGear Project. </h3>
-        <h5> {this.props.example} </h5>
-        <Add value={this.props.value} add={this.props.add} />
-        <Form />
+        {!this.props.isValidLogin ? (
+          <Login {...this.props} />
+        ) : (
+          <PageForm Logout={this.props.Logout} />
+        )}
       </>
     );
   }
@@ -23,14 +28,22 @@ class Main extends PureComponent {
 function mapDispatchToProps(dispatch) {
   return {
     //example: (value) => dispatch(actions.example(value))
-    add: value => dispatch(actions.onAddClick(value))
+    sagaCheck: () => dispatch(actions.sagaCheck()),
+    add: value => dispatch(actions.onAddClick(value)),
+    validateLogin: () => dispatch(actions.onLoginSubmit()),
+    getLoginFieldValues: (key, value) =>
+      dispatch(actions.getLoginFields(key, value)),
+    Logout: () => dispatch(actions.logout())
   };
 }
 
 const mapStateToProps = () =>
   createStructuredSelector({
     example: selectors.exampleData(),
-    value: selectors.getAddVal()
+    value: selectors.getAddVal(),
+    email: selectors.getLoginFields("email"),
+    password: selectors.getLoginFields("password"),
+    isValidLogin: selectors.loginStatus()
   });
 
 export default connect(
