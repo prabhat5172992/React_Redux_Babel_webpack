@@ -29,6 +29,8 @@ function mapDispatchToProps(dispatch) {
   return {
     //example: (value) => dispatch(actions.example(value))
     sagaCheck: () => dispatch(actions.sagaCheck()),
+    makeValidateLoginFields: fieldName =>
+      dispatch(actions.makeValidateLoginFields(fieldName)),
     add: value => dispatch(actions.onAddClick(value)),
     validateLogin: () => dispatch(actions.onLoginSubmit()),
     getLoginFieldValues: (key, value) =>
@@ -43,6 +45,8 @@ const mapStateToProps = () =>
     value: selectors.getAddVal(),
     email: selectors.getLoginFields("email"),
     password: selectors.getLoginFields("password"),
+    emailErr: selectors.makeSelectLoginErr("email"),
+    passwordErr: selectors.makeSelectLoginErr("password"),
     isValidLogin: selectors.loginStatus()
   });
 

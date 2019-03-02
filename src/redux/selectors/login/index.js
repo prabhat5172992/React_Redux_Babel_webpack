@@ -13,11 +13,29 @@ const loginStatus = () =>
     selectLogin,
     data => data.get("isValidLogin")
   );
+const makeSelectLoginFields = field =>
+  createSelector(
+    selectLogin,
+    login => login.get(field)
+  );
 
 const getLoginFields = key =>
   createSelector(
-    selectLogin,
-    fields => fields.getIn(["form", key])
+    makeSelectLoginFields("form"),
+    fields => fields.get(key)
   );
 
-export { selectLogin, getLoginData, loginStatus, getLoginFields };
+const makeSelectLoginErr = field =>
+  createSelector(
+    makeSelectLoginFields("error"),
+    error => error.get(field)
+  );
+
+export {
+  selectLogin,
+  makeSelectLoginFields,
+  getLoginData,
+  loginStatus,
+  getLoginFields,
+  makeSelectLoginErr
+};
