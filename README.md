@@ -9,4 +9,8 @@ Try logging in using below credentials.
 	{
 		email: "ranvijay@gmail.com",
 		password: "87654321"
+	},
+	{
+		email: "anupamdas@gmail.com",
+		password: "anupam123"
 	}

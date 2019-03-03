@@ -18,7 +18,7 @@ class Main extends PureComponent {
         {!this.props.isValidLogin ? (
           <Login {...this.props} />
         ) : (
-          <PageForm Logout={this.props.Logout} />
+          <PageForm Logout={this.props.Logout} user={this.props.loggedInUser} />
         )}
       </>
     );
@@ -47,7 +47,8 @@ const mapStateToProps = () =>
     password: selectors.getLoginFields("password"),
     emailErr: selectors.makeSelectLoginErr("email"),
     passwordErr: selectors.makeSelectLoginErr("password"),
-    isValidLogin: selectors.loginStatus()
+    isValidLogin: selectors.loginStatus(),
+    loggedInUser: selectors.getLoggedInUser()
   });
 
 export default connect(

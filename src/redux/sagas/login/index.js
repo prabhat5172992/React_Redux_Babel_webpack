@@ -40,6 +40,7 @@ function* validateLoginData() {
     c_Password.get("password") === password
   ) {
     yield put(actions.loginStatus(true));
+    yield put(actions.loggedInUser(c_Email.get("name")));
     yield put(actions.clearLoginError());
   } else {
     yield put(actions.loginStatus(false));

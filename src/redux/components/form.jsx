@@ -5,19 +5,19 @@ import RaisedButton from "material-ui/RaisedButton";
 export default props => {
   return (
     <>
-      <div className="boxShadow bgWhite">
-        <br />
-        <div className="centerAlign">
-          <h1> My React Form. </h1>
+      <div>
+        <div className="height width bgColor">
+          <div className="centerAlign txtWhite">
+            <h1> My React Form </h1>
+          </div>
+          <div className="txtWhite rightAlign mr4">
+            <h4>{`Logged in as ${props.user}`}</h4>
+          </div>
         </div>
-        <br />
+        <div className="mt4 centerAlign">
+          <RaisedButton label="Logout" primary={true} onClick={props.Logout} />
+        </div>
       </div>
-      <RaisedButton
-        label="Logout"
-        style={{ marginTop: "10px" }}
-        primary={true}
-        onClick={props.Logout}
-      />
     </>
   );
 };

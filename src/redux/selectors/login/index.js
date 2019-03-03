@@ -2,6 +2,12 @@ import { createSelector } from "reselect";
 
 const selectLogin = state => state["login"];
 
+const getLoggedInUser = () =>
+  createSelector(
+    selectLogin,
+    user => user.get("loggedInUser")
+  );
+
 const getLoginData = () =>
   createSelector(
     selectLogin,
@@ -37,5 +43,6 @@ export {
   getLoginData,
   loginStatus,
   getLoginFields,
-  makeSelectLoginErr
+  makeSelectLoginErr,
+  getLoggedInUser
 };

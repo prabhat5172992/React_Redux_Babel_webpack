@@ -5,7 +5,8 @@ const initialState = fromJS({
   loginData: constants.INITIAL_LOGIN_DATA,
   isValidLogin: false,
   form: constants.LOGIN_FORM,
-  error: {}
+  error: {},
+  loggedInUser: ""
 });
 
 function Login(state = initialState, action) {
@@ -22,6 +23,8 @@ function Login(state = initialState, action) {
       return state.set("error", fromJS({}));
     case constants.LOGOUT_FROM_THE_PAGE:
       return state.set("isValidLogin", false);
+    case constants.GET_LOOGED_IN_USER:
+      return state.set("loggedInUser", action.id);
     default:
       return state;
   }

@@ -37,3 +37,8 @@ export const getLoginFields = (key, value) => ({
 export const logout = () => ({
   type: constants.LOGOUT_FROM_THE_PAGE
 });
+
+export const loggedInUser = id => ({
+  type: constants.GET_LOOGED_IN_USER,
+  id
+});
