@@ -1,24 +1,17 @@
 .boxShadow {
   border: 1px solid;
   padding: 10px;
-  box-shadow: 1px 3px #888888;
-}
-
-.bgWhite {
-  background-color: #fff;
-}
-
-.bgColor {
-  background-color: #080ec6;
+  box-shadow: 1px 3px #888;
 }
 
 .displayInline {
   display: inline-block;
 }
 
-.txtWhite {
-  color: #fff;
+.fontWeight {
+  font-weight: bold;
 }
+
 .centerAlign {
   text-align: center;
 }
@@ -47,8 +40,44 @@
   height: 100%;
 }
 
-$sizes: 50;
+.cursorP {
+  cursor: pointer;
+}
 
+.cursorM {
+  cursor: context-menu;
+}
+
+.border {
+  border: 1px solid #888;
+}
+.circle {
+  border-radius: 50%;
+}
+
+// Get different text colors
+@mixin theme($name, $color) {
+  .#{$name} {
+    color: $color;
+  }
+}
+@include theme(theme-green, darkgreen);
+@include theme(theme-orange, orange);
+@include theme(theme-red, red);
+@include theme(txtWhite, #fff);
+
+//Get different background colors
+@mixin theme($name, $color) {
+  .#{$name} {
+    background-color: $color;
+  }
+}
+@include theme(bgWhite, #fff);
+@include theme(bgColor, #080ec6);
+@include theme(changeColor, darkgreen);
+
+$sizes: 50;
+//Get all kind of margins
 @mixin margin-classes {
   @for $i from 1 through $sizes {
     $margin: $i * 0.25rem;
@@ -80,6 +109,7 @@ $sizes: 50;
 }
 @include margin-classes;
 
+//Get all kind of Paddings
 @mixin padding-classes {
   @for $i from 1 through $sizes {
     $padding: $i * 0.25rem;

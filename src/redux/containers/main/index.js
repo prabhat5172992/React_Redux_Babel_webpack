@@ -5,6 +5,8 @@ import actions from "../../actions";
 import selectors from "../../selectors";
 import Login from "../../components/login";
 import PageForm from "../../components/form";
+import CheckBoxGroup from "../../components/checkBoxGroup";
+import Divider from "material-ui/Divider";
 
 class Main extends PureComponent {
   componentDidMount() {
@@ -18,7 +20,14 @@ class Main extends PureComponent {
         {!this.props.isValidLogin ? (
           <Login {...this.props} />
         ) : (
-          <PageForm Logout={this.props.Logout} user={this.props.loggedInUser} />
+          <>
+            <PageForm
+              Logout={this.props.Logout}
+              user={this.props.loggedInUser}
+            />
+            <Divider />
+            <CheckBoxGroup {...this.props} />
+          </>
         )}
       </>
     );
@@ -35,7 +44,11 @@ function mapDispatchToProps(dispatch) {
     validateLogin: () => dispatch(actions.onLoginSubmit()),
     getLoginFieldValues: (key, value) =>
       dispatch(actions.getLoginFields(key, value)),
-    Logout: () => dispatch(actions.logout())
+    Logout: () => dispatch(actions.logout()),
+    handleCheckboxes: item => dispatch(actions.handleCheckBoxClick(item)),
+    ResetAllCheckbox: () => dispatch(actions.resetCheckbox()),
+    copySelectedCheckbox: () => dispatch(actions.getCheckedCheckboxes()),
+    copyAllCheckbox: () => dispatch(actions.copyAllCheckbox())
   };
 }
 
@@ -48,7 +61,10 @@ const mapStateToProps = () =>
     emailErr: selectors.makeSelectLoginErr("email"),
     passwordErr: selectors.makeSelectLoginErr("password"),
     isValidLogin: selectors.loginStatus(),
-    loggedInUser: selectors.getLoggedInUser()
+    loggedInUser: selectors.getLoggedInUser(),
+    checkboxData: selectors.getCheckboxData(),
+    selectedValue: selectors.getSelectedVal(),
+    allCheckboxValCopy: selectors.copyAllCheckbox()
   });
 
 export default connect(

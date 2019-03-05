@@ -5,7 +5,7 @@ import RaisedButton from "material-ui/RaisedButton";
 export default props => {
   return (
     <>
-      <div>
+      <div className="mb4">
         <div className="height width bgColor">
           <div className="centerAlign txtWhite">
             <h1> My React Form </h1>

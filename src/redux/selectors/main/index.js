@@ -10,12 +10,23 @@ const mainData = () =>
     global => global.main
   );
 
-// // const exampleData = () => createSelector(
-// //     mainData(),
-// //     data => {
-// //         if(data.get('example')) return data.get('example');
-// //     }
-// // )
+const getCheckboxData = () =>
+  createSelector(
+    mainData(),
+    data => data.get("checkboxData") && data.get("checkboxData").toJS()
+  );
+
+const getSelectedVal = () =>
+  createSelector(
+    mainData(),
+    data => data.get("selectedVal")
+  );
+
+const copyAllCheckbox = () =>
+  createSelector(
+    mainData(),
+    data => data.get("displayAll")
+  );
 
 const exampleData = () =>
   createSelector(
@@ -29,4 +40,12 @@ const getAddVal = () =>
     data => data.get("addVal")
   );
 
-export { makeSelectGlobal, mainData, exampleData, getAddVal };
+export {
+  makeSelectGlobal,
+  mainData,
+  getCheckboxData,
+  exampleData,
+  getAddVal,
+  getSelectedVal,
+  copyAllCheckbox
+};
